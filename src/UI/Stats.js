@@ -1,4 +1,4 @@
-/* import words from '../Words/data/words.js';
+import words from '../Words/data/words.js';
 import GetWord from '../Words/GetWord.js';
 
 class Stats {
@@ -11,10 +11,9 @@ class Stats {
   displayStats() {
     this.totalCards.textContent = words.length;
     this.knownCards.textContent = GetWord.knownWords.length;
-    this.remainingCards.textContent = GetWord.accessibleWords.length;
+    this.remainingCards.textContent = words.length - GetWord.knownWords.length;
     return;
   }
 }
 
 export default Stats;
- */

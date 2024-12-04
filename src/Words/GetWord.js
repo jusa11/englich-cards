@@ -4,23 +4,13 @@ import words from './data/words.js';
 
 class GetWord {
   static knownWords = [];
-  static accessibleWords = [];
 
   static getRandomWord() {
-    this.accessibleWords = words.filter(
-      (word) => !this.knownWords.includes(word.id)
-    );
-
-    if (this.accessibleWords.length === 0) {
-      console.log('vse');
-      return null;
+    const randomWord = words[MathRandom.generateRandomNum(words.length)];
+    if (this.knownWords.length === words.length) {
+      return null
     }
-    console.log(this.accessibleWords);
 
-    const randomWord =
-      this.accessibleWords[
-        MathRandom.generateRandomNum(this.accessibleWords.length)
-      ];
     return randomWord;
   }
 

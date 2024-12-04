@@ -1,5 +1,6 @@
 import GetWord from '../Words/GetWord.js';
-
+import Stats from './Stats.js';
+import HandlingUserSelection from './HandlingUserSelection.js';
 
 class ShowWord {
   constructor() {
@@ -7,11 +8,19 @@ class ShowWord {
   }
 
   static currentWord() {
-    const word = GetWord.getRandomWord();
-    return word;
+    return GetWord.getRandomWord();
   }
 
   displayWord() {
+    const stats = new Stats();
+    stats.displayStats();
+
+    if (!ShowWord.currentWord()) {
+      const handlingUserSelection = new HandlingUserSelection();
+      handlingUserSelection.buttons.remove();
+      this.textWord.textContent = 'Вы выучили все слова';
+      return;
+    }
 
     return (this.textWord.textContent = ShowWord.currentWord().eng);
   }

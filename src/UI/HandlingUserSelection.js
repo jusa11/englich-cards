@@ -9,9 +9,8 @@ class HandlingUserSelection {
   }
   userSelect(showWord) {
     this.knowBtn.addEventListener('click', () => {
-/*       const currentWord = ShowWord.currentWord();
+      const currentWord = ShowWord.currentWord();
       GetWord.addKnownWord(currentWord);
-      console.log(GetWord.knownWords); */
       return showWord.displayWord();
     });
 
