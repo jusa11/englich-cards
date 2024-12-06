@@ -5,27 +5,33 @@ import HandlingUserSelection from './HandlingUserSelection.js';
 class ShowWord {
   constructor() {
     this.textWord = document.querySelector('.word');
-  }
-
-  static currentWord() {
-    return GetWord.getRandomWord();
+    this._currentWord = null;
   }
 
   displayWord() {
     const stats = new Stats();
     stats.displayStats();
 
-    if (!ShowWord.currentWord()) {
-      const handlingUserSelection = new HandlingUserSelection();
-      handlingUserSelection.buttons.remove();
-      this.textWord.textContent = 'Вы выучили все слова';
-      return;
-    }
+    this._currentWord = GetWord.getRandomWord();
 
-    return (this.textWord.textContent = ShowWord.currentWord().eng);
+    if (this._currentWord) {
+      this.textWord.textContent = this._currentWord.eng;
+      this.textWord.setAttribute('data-lang', 'eng');
+    } else {
+      this.textWord.textContent = 'Вы выучили все слова';
+      return null;
+    }
   }
 
-  static translateWord() {}
+  translateWord() {
+    if (this.textWord.getAttribute('data-lang') === 'eng') {
+      this.textWord.textContent = this._currentWord.rus;
+      this.textWord.setAttribute('data-lang', 'rus');
+    } else {
+      this.textWord.textContent = this._currentWord.eng;
+      this.textWord.setAttribute('data-lang', 'eng');
+    }
+  }
 }
 
 export default ShowWord;

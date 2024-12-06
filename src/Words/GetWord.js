@@ -8,7 +8,7 @@ class GetWord {
   static getRandomWord() {
     const randomWord = words[MathRandom.generateRandomNum(words.length)];
     if (this.knownWords.length === words.length) {
-      return null
+      return null;
     }
 
     return randomWord;
@@ -16,6 +16,10 @@ class GetWord {
 
   static addKnownWord(word) {
     this.knownWords.push(word.id);
+  }
+
+  static reset() {
+    this.knownWords = [];
   }
 }
 
